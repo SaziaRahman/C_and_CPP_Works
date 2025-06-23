@@ -1,7 +1,7 @@
 #include <stdio.h>
 typedef char *string;
 
-bool compare(char *a, char *b)
+bool compare(string a[], string b[])
 {
     int n = sizeof(a)/sizeof(a[0]);
     for(int i = 0; i<n; i++)
@@ -15,7 +15,7 @@ bool compare(char *a, char *b)
 
 int main(void)
 {
-    char t1[100], t2[100];
+    string t1[1], t2[1];
     printf("Type 1st person's name:");
     scanf("%s", t1);
     printf("Type 2nd person's name:");
