@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 
 int count = 0, ct = 0;
 
