@@ -12,16 +12,17 @@ int main(int argc, char *argv[])
 {
     node *list = NULL, *temp = (node*) malloc(sizeof(node));
     node *list1 = NULL;
-    int charecter;
+    char charecter;
     if (argc > 1)
     {
-        charecter = atoi(argv[1]);
+        charecter = *argv[1];
     }
     else
     {
         charecter = 1;
     }
-    if(charecter == 0)
+
+    if(charecter == 'b')
     {
         for (int i=2; i < argc; i++)
         {
