@@ -8,22 +8,23 @@ typedef struct node
 }
 node;
 
+int input1(int a)
+{
+    scanf("%i", a);
+    return a;
+}
+
 int main(int argc, char *argv[])
 {
-    node *list = NULL, *temp = (node*) malloc(sizeof(node));
+    node *temp = (node*) malloc(sizeof(node));
     node *list1 = NULL;
+    int comp, samp = 0;
     char charecter;
     if (argc > 1)
     {
         charecter = *argv[1];
-    }
-    else
-    {
-        charecter = 1;
-    }
-
-    if(charecter == 'b')
-    {
+        if(charecter == 'b')
+        {
         for (int i=2; i < argc; i++)
         {
         int number = atoi(argv[i]);
@@ -40,42 +41,82 @@ int main(int argc, char *argv[])
         n->next = list1;
         list1 = n;
         }
-        
-    }
-    else
-    {
-    for (int i=1; i < argc; i++)
-    {
-        
-        int number = atoi(argv[i]);
-
-        node *n = (node*) malloc(sizeof(node));
-        if (n == NULL)
-        {
-            return 1;
-        }
-        
-        n->number = number;
-        n->next = NULL;
-
-        if(list1==NULL)
-        {
-            list1 = n;
-            temp = list1;
         }
         else
-        {
-            temp->next = n;
-            if (temp->next != NULL)
             {
-                temp = temp->next;
+                for (int i=1; i < argc; i++)
+                {
+                    int number = atoi(argv[i]);
+                    node *n = (node*) malloc(sizeof(node));
+                    if (n == NULL)
+                    {
+                        return 1;
+                    }
+                    
+                    n->number = number;
+                    n->next = NULL;
+                    
+                    if(list1==NULL)
+                    {
+                        list1 = n;
+                        temp = list1;
+                    }
+                    else
+                    {
+                        temp->next = n;
+                        if (temp->next != NULL)
+                        {
+                            temp = temp->next;
+                        }
+                    }
+                    if (i == argc-1)
+                    {
+                        temp->next = NULL;
+                    }
+                }
             }
         }
-        if (i == argc-1)
+    else
+    {
+        node *s = (node*) malloc(sizeof(node));
+        for(int i = 0; i < 10; i++)
         {
-            temp->next = NULL;
+            node *p = (node*) malloc(sizeof(node));
+            if (p == NULL)
+            {
+                return 1;
+            }
+            
+            scanf("%i", &comp);
+            p->number = comp;
+            p->next = NULL;
+            if(list1 == NULL)
+            {
+                list1 = p;
+                s = list1;
+                samp = comp;
+            }
+            else
+            {
+            if (comp > samp)
+            {
+                s->next = p;
+                if (s->next != NULL)
+                {
+                    s = s->next;
+                }
+                samp = comp;
+            }
+            else
+            {
+                p->next = list1;
+                list1 = p;
+                samp = comp;
+            }
+            }
         }
-    }
+
+
     }
 
     printf("=========%i=========\n", argc);
@@ -87,7 +128,7 @@ int main(int argc, char *argv[])
         ptr= ptr->next;
     }
 
-    printf("----------0----------");
+    printf("\n----------0----------");
 
     ptr = list1;
     while (ptr!=NULL)
