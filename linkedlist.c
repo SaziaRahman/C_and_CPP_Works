@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 {
     node *temp = (node*) malloc(sizeof(node));
     node *list1 = NULL;
-    int comp, samp = 0;
+    int comp, samp[10];
     char charecter;
     if (argc > 1)
     {
@@ -81,41 +81,48 @@ int main(int argc, char *argv[])
         node *s = (node*) malloc(sizeof(node));
         for(int i = 0; i < 10; i++)
         {
+            scanf("%i", &comp);
+            samp[i] = comp;
+        }
+
+        int min = samp[0];
+        for(int i = 0; i < 10; i++)
+        {
+            for(int j = i; j<10; j++)
+            {
+                if(samp[j+1] < samp[j])
+                {
+                    min = samp[j+1];
+                    samp[j+1] = samp[j];
+                    samp[j] = min;
+                }
+            }
+        }
+
+        for(int i = 0; i < 10; i++)
+        {
             node *p = (node*) malloc(sizeof(node));
             if (p == NULL)
             {
                 return 1;
             }
-            
-            scanf("%i", &comp);
-            p->number = comp;
+            p->number = samp[i];
             p->next = NULL;
             if(list1 == NULL)
             {
                 list1 = p;
                 s = list1;
-                samp = comp;
             }
             else
-            {
-            if (comp > samp)
             {
                 s->next = p;
                 if (s->next != NULL)
                 {
                     s = s->next;
                 }
-                samp = comp;
-            }
-            else
-            {
-                p->next = list1;
-                list1 = p;
-                samp = comp;
-            }
+            
             }
         }
-
 
     }
 
