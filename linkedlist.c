@@ -8,12 +8,6 @@ typedef struct node
 }
 node;
 
-int input1(int a)
-{
-    scanf("%i", a);
-    return a;
-}
-
 int main(int argc, char *argv[])
 {
     node *temp = (node*) malloc(sizeof(node));
