@@ -43,9 +43,12 @@ int main()
     }
 
     p->number = num[j];
-    for(int i = 0; i<strlen(comp[j]); i++)
+    int r=0;
+    while (comp[j][r]!= '\0')
     {
-        p->name[i] = comp[j][i];
+        p->name[r] = comp[j][r];
+        printf("%c", p->name[r]);
+        r++;
     }
     
     for(int i = 0; i<15; i++)
@@ -180,41 +183,44 @@ int main()
             p->letter1[25]  = p;
             m = 25;
         }
-        else if (j==0)
+        else if(comp[j][r] == '\0')
         {
-            p->letter1[m] = p->end;
-            p->end = NULL;
-            p->end = list;
-            list = p;
-        }
-        
-        else
-        {
+            p->letter1[m] = NULL;
             p->letter1[m] = list;
             list = p;
-            //printf("bbbbbbbbbbbbbbbbbb%ibbbbbbbbbbbbbbbbbbb",list->number);
+            printf("\nbbbbbbbbbbbbbbbbbb%ibbbbbbbbbbbbbbbbbbb\n",list->number);
+            for(int l = 0; l<strlen(comp[j]); l++)
+            {
+                printf("%c", list->name[l]);
+            }
+            printf("\n");
+            p = NULL;
             break;
         }
         
     }
-    
+    free(p);
     }
 
     node *ptr = list;
     int n = 0;
     while(ptr!=NULL){
-    printf("\n--------Your Name [%i]-------\n", n+1);
-    for(int i = 0; i<strlen(comp[n]); i++)
+    printf("\n--------Your Name [%i]-------\n", n);
+    for(int w = 0; w<strlen(comp[n]); w++)
     {
-        printf("%c", ptr->name[i]);
+        printf("%c", ptr->name[w]);
     }
 
-    printf("\n--------Your Phone Number [%i]-------\n", n+1);
+    printf("\n--------Your Phone Number [%i]-------\n", n);
     printf("%i\n", ptr->number);
 
     for(int i = 0; i<strlen(comp[n]); i++)
     {
-        if(ptr->name[i] == 'A' || ptr->name[i] == 'a')
+        if(comp[n][i] == '\0')
+        {
+            break;
+        }
+        else if(ptr->name[i] == 'A' || ptr->name[i] == 'a')
         {
             ptr = ptr->letter1[0];
             printf("======A======");
@@ -324,11 +330,6 @@ int main()
         }
     }
     n++;
-    if(n==3)
-        {
-            ptr = NULL;
-            printf("++++++++++++++++++++++++++++");
-        }
     }
 
     ptr = list;
