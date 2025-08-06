@@ -5,7 +5,7 @@
 typedef struct node
 {
     int number;
-    struct node *letter1[26], *end;
+    struct node *letter1[27];
     char name[15];
 }
 node;
@@ -183,9 +183,17 @@ int main()
             p->letter1[25]  = p;
             m = 25;
         }
-        else if(comp[j][r] == '\0')
+        else if(comp[j][i] == '\0')
         {
-            p->letter1[m] = NULL;
+            if(j == 2)
+            {
+                p->letter1[26] = NULL;
+            }
+            else
+            {
+                p->letter1[26] = p;
+            }
+            p->letter1[m] = p->letter1[26];
             p->letter1[m] = list;
             list = p;
             printf("\nbbbbbbbbbbbbbbbbbb%ibbbbbbbbbbbbbbbbbbb\n",list->number);
@@ -218,6 +226,7 @@ int main()
     {
         if(comp[n][i] == '\0')
         {
+            ptr = ptr->letter1[26];
             break;
         }
         else if(ptr->name[i] == 'A' || ptr->name[i] == 'a')
