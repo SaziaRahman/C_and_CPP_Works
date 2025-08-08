@@ -4,7 +4,7 @@
 
 typedef struct node
 {
-    int number;
+    char *number;
     struct node *letter1[100][26];
     char name[15];
 }
@@ -14,27 +14,31 @@ int main()
 {
     node *list = NULL;
     char *comp[3]; 
-    int num[3], m;
+    char *num[3], m;
     int t = 0, d = 0;
     char alpha[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
     char beta[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+    num[0] = (char *) malloc(15);
+    num[1] = (char *) malloc(15);
+    num[2] = (char *) malloc(15);
     comp[0] = (char *) malloc(15);
     comp[1] = (char *) malloc(15);
     comp[2] = (char *) malloc(15);
     
     printf("Write 1st Phone Number: \n");
-    scanf("%i", &num[0]);
+    scanf("%s", num[0]);
     printf("Write 1st Name: \n");
     scanf("%s", comp[0]);
     printf("Write 2nd Phone Number: \n");
-    scanf("%i", &num[1]);
+    scanf("%s", num[1]);
     printf("Write 2nd Name: \n");
     scanf("%s", comp[1]);
     printf("Write 3rd Phone Number: \n");
-    scanf("%i", &num[2]);
+    scanf("%s", num[2]);
     printf("Write 3rd Name: \n");
     scanf("%s", comp[2]);
 
+    printf("===============");
     
     for(int j = 0; j<3; j++)
     {
@@ -43,6 +47,13 @@ int main()
         if (p == NULL)
         {
             return 1;
+        }
+
+        int f = 0;
+        while (num[j][f]!= '\0')
+        {
+            p->name[f] = num[j][f];
+            f++;
         }
 
         p->number = num[j];
@@ -98,7 +109,7 @@ int main()
         }
 
         printf("\n--------Your Phone Number [%i]-------\n", index);
-        printf("%i\n", ptr->number);
+        printf("%s\n", ptr->number);
         int g = k-1;
         while (g>=0)
         {
@@ -127,6 +138,10 @@ int main()
     }
     
     ptr = list;
+    
+    free(num[0]);
+    free(num[1]);
+    free(num[2]);
     free(comp[0]);
     free(comp[1]);
     free(comp[2]);
