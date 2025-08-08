@@ -50,7 +50,6 @@ int main()
         while (comp[j][r]!= '\0')
         {
             p->name[r] = comp[j][r];
-            printf("%c", p->name[r]);
             r++;
             k++;
         }
@@ -105,7 +104,6 @@ int main()
         {
             for(int i = 0; i<26; i++)
                 {
-                    printf("%c",alpha[i]); 
                     if(ptr->name[g] == alpha[i] || ptr->name[g] == beta[i])
                     {
                         if(g==k-1)
