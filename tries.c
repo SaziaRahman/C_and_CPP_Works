@@ -5,7 +5,7 @@
 typedef struct node
 {
     char *number;
-    struct node *letter1[100][26];
+    struct node *letter1[3][26];
     char name[15];
 }
 node;
@@ -15,7 +15,6 @@ int main()
     node *list = NULL;
     char *comp[3]; 
     char *num[3], m;
-    int t = 0, d = 0;
     char alpha[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
     char beta[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     num[0] = (char *) malloc(15);
@@ -64,35 +63,30 @@ int main()
             r++;
             k++;
         }
-        int g = 0;
-        while (t<100)
-        {
+        int g = 0, t = 0;
         while(g<k)
             {
                 for(int i = 0; i<26; i++){
                     if(p->name[g] == alpha[i] || p->name[g] == beta[i])
                     {
-                        p->letter1[t][i] = p;
+                        p->letter1[j][i] = p;
+                        printf("===%i===%i===", j, i);
                         m = i;
                         g++;
-                        t++;
                         break;
                     }
                 }
             }
-            break;
-        }
+           
 
         if(j == 2)
         {
-        p->letter1[t-1][m] = NULL;
+        p->letter1[j][m] = NULL;
         }
-        p->letter1[t-1][m] = list;
+        p->letter1[j][m] = list;
         list = p;
-        d = t;
     }
 
-    t = t-1;
     node *ptr = list;
     int n = 2, index = 0;
     while(ptr!=NULL)
@@ -102,6 +96,7 @@ int main()
         node *temp = (node*) malloc(sizeof(node));
         printf("\n--------Your Name [%i]-------\n", index);
         int k = 0;
+        
         for(int w = 0; w<strlen(comp[n]); w++)
         {
             printf("%c", ptr->name[w]);
@@ -111,18 +106,19 @@ int main()
         printf("\n--------Your Phone Number [%i]-------\n", index);
         printf("%s\n", ptr->number);
         int g = k-1;
+        
         while (g>=0)
         {
             for(int i = 0; i<26; i++)
                 {
+                    //printf("///===%c===%i===", ptr->name[g], i);
                     if(ptr->name[g] == alpha[i] || ptr->name[g] == beta[i])
                     {
-                        if(g==k-1)
+                        if(g == k-1)
                         {
-                            temp = ptr->letter1[t][i];
+                            temp = ptr->letter1[n][i];
+                            printf("///===%i===%i===", n, i);
                         }
-                        m = i;
-                        t--;
                         break;
                     }
                 }
@@ -132,7 +128,7 @@ int main()
         n--;
         if(n == -1)
         {
-            ptr = NULL;
+        
             break;
         }
     }
