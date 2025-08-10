@@ -70,7 +70,7 @@ int main()
                     if(p->name[g] == alpha[i] || p->name[g] == beta[i])
                     {
                         p->letter1[j][i] = p;
-                        printf("===%i===%i===", j, i);
+                        //printf("===%i===%i===", j, i);
                         m = i;
                         g++;
                         break;
@@ -117,7 +117,7 @@ int main()
                         if(g == k-1)
                         {
                             temp = ptr->letter1[n][i];
-                            printf("///===%i===%i===", n, i);
+                            //printf("///===%i===%i===", n, i);
                         }
                         break;
                     }
