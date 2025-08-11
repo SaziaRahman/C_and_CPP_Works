@@ -2,7 +2,12 @@
 
 using namespace std;
 
-class Employee{
+class Person{
+    public:
+        virtual void personOccupation() = 0;
+};
+
+class Employee: public Person{
     private:
         string Name;
         int Age;
@@ -55,6 +60,11 @@ class Employee{
             cout<< Name << " is working."<<endl;
         }
 
+        void personOccupation()
+        {
+            cout<< Name << " is an Employee."<<endl;
+        }
+
         Employee()
         {
 
@@ -68,7 +78,7 @@ class Employee{
         }
 };
 
-class Developer: Employee
+class Developer: public Employee
 {
     public:
         string ProgrammingLanguageSkill;
@@ -88,6 +98,11 @@ class Developer: Employee
             cout<< getName() << " is working with "<< ProgrammingLanguageSkill << "." <<endl;
         }
         
+        void personOccupation()
+        {
+            cout<< getName() << " is a Developer."<<endl;
+        }
+
         void FixBug()
         {
             cout << getName() << " fixed bug using " << ProgrammingLanguageSkill << " who works in "<< Company << " Company." << endl;
@@ -112,5 +127,10 @@ int main(void)
     Developer d = Developer(name, company, age, pSkill);
     d.work();
     d.FixBug();
+    d.personOccupation();
+
+    Employee *e1 = &d;
+
+    e1->personOccupation();
     return 0;
 }
