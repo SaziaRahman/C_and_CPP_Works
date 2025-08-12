@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+         {
+            "name": "(gdb) Launch",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${fileDirname}\\${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "console": "externalTerminal",
+            //"externalConsole": true,
+            //"launchCompleteCommand": "exec-run",
+            /*"windows": {
+                "MIMode": "gdb",
+                "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe"
+            },*/
+            "preLaunchTask": "C/C++: g++.exe build active file",
+        }
+    ]
+}
