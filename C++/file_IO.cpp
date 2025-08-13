@@ -11,15 +11,32 @@ int main() {
     string option;
     string line;
     ifstream fileptr;
-
+    map<string, string> mp;
+    
+    
     while (true) {
-        cout << "Select an option:\n 1) Search\n 2) Add\n 3) Update\n 4) Exit\n";
+        fileptr.open("file_io.txt");
+        if (fileptr.is_open())
+        {
+            while (getline(fileptr,line))
+            {
+            mp[line] = "{ \"name\": "+line+" }";
+            }
+
+            fileptr.close();
+        }
+        else cout << "Unable to open file";
+        for (const auto& pair : mp)
+        {
+        cout << pair.first <<": "<< pair.second << endl;
+        }
+        cout << "\nSelect an option:\n 1) Search\n 2) Add\n 3) Update\n 4) Exit\n";
         getline(cin, option);
         
         if (option == "Search") {
             fileptr.open("file_io.txt");
             if (!fileptr.is_open()) {
-                cerr << "Error opening file" << std::endl;
+                cerr << "Error opening file" << endl;
                 ofstream createFile("file_io.txt");
                 cout << "File successfully created! Write Something: ";
                 getline(cin, line);

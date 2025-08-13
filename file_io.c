@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
+
 typedef char *string;
 
 void removeSpaces(char *str,int i,int j);
@@ -10,6 +12,7 @@ int main(void)
     string option = (string) malloc(20);
     char line[1000];
     FILE *fileptr;
+
     while(true)
     {
     printf("Select a option:\n 1) Search\n 2) Add\n 3) Update\n 4) Exit\n");
@@ -32,9 +35,9 @@ int main(void)
             if (fileptr != NULL)
             {
                 int c = 0;
+                char comp[1000];
                 while(fgets(line, 1000, fileptr))
                 {
-                    char comp[1000];
                     if(c == 0)
                     {
                         gets(comp);
